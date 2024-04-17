@@ -1,16 +1,18 @@
 "use client";
 
-import { getPets } from "@/api/petApi";
+import { getOwners } from "@/api/petApi";
 import { useQuery } from "@tanstack/react-query";
 
-export const GET_PETS = "GetPets";
+export const GET_OWNERS = "GetOwnerss";
 
-export function useQueryPets() {
+export function useQueryOwners() {
   return useQuery({
-    queryKey: [GET_PETS],
+    queryKey: [GET_OWNERS],
     queryFn: async () => {
-      const { data } = await getPets();
-      if (data) return data;
+      const { data } = await getOwners();
+      if (data) {
+        return data;
+      }
     },
   });
 }

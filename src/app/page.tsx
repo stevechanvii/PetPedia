@@ -1,20 +1,13 @@
-"use client";
-
 import Hero from "@/container/hero";
+import Pets from "@/container/ptes";
 import SearchBar from "@/container/search-bar";
-import { useQueryPets } from "@/hooks/query/useQueryPets";
 
 export default function Home() {
-  const { data, isLoading, isError } = useQueryPets();
-  console.log(data);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
-
   return (
     <main className="flex flex-col">
       <Hero />
       <SearchBar />
+      <Pets />
 
       {/* {data?.map((owner) => (
                 <div

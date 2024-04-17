@@ -21,7 +21,7 @@ const SearchBar = () => {
 
   return (
     <div className="flex gap-8 p-6">
-      <div className="flex flex-col flex-1 border rounded p-6">
+      <div className="flex flex-col flex-1 border rounded p-4">
         <TypographyH2>Owner</TypographyH2>
         <div className="flex flex-col  gap-4">
           <div className="flex flex-col gap-2">
@@ -44,7 +44,7 @@ const SearchBar = () => {
                   variant={
                     selectedGenders.includes(gen) ? "default" : "outline"
                   }
-                  className="px-4 py-2"
+                  className="px-4 py-2 cursor-pointer"
                 >
                   {gen}
                 </Badge>
@@ -58,7 +58,7 @@ const SearchBar = () => {
       </div>
       <div className="flex flex-col flex-1 border rounded p-6">
         <TypographyH2>Pet</TypographyH2>
-        <div className="flex flex-col  gap-4">
+        <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="pet">Search by Name</Label>
             <Input id="pet" placeholder="Pet Name" className="max-w-[300px]" />
@@ -67,7 +67,11 @@ const SearchBar = () => {
             <Label htmlFor="type">Group by Type</Label>
             <div className="flex gap-2">
               {Object.values(PetType).map((type) => (
-                <Badge key={type} variant="outline" className="px-4 py-2">
+                <Badge
+                  key={type}
+                  variant="outline"
+                  className="px-4 py-2 cursor-pointer"
+                >
                   {type}
                 </Badge>
               ))}
