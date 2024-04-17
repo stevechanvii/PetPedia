@@ -1,5 +1,6 @@
 import { type Gender, type PetType } from "@/types";
 import React from "react";
+import { TypographyP } from "./ui/typography";
 
 type Props = {
   name: string;
@@ -9,9 +10,15 @@ type Props = {
   ownerAge: number;
 };
 
-const PetCard = ({ name }: Props) => {
+const PetCard = ({ name, ownerAge, ownerGender, ownerName, type }: Props) => {
   return (
-    <div className="flex p-5 justify-center items-center border">{name}</div>
+    <div className="flex flex-col p-5 w-60 justify-center items-center border">
+      <TypographyP>Owner: {ownerName}</TypographyP>
+      <TypographyP>Age: {ownerAge}</TypographyP>
+      <TypographyP>Gender: {ownerGender}</TypographyP>
+      <TypographyP>Pet Name: {name}</TypographyP>
+      <TypographyP>Pet Type: {type}</TypographyP>
+    </div>
   );
 };
 
