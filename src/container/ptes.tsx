@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useQueryOwners } from "@/hooks/query/useQueryPets";
 import { Loader } from "lucide-react";
 import PetCard from "@/components/pet-card";
@@ -23,20 +23,6 @@ type FlatPetProps = {
   ownerAge: number;
   ownerGender: Gender;
 };
-function groupByOwnerGender(data: FlatPetProps[]) {
-  const groupedData: Record<Gender, FlatPetProps[]> = {
-    [Gender.Male]: [],
-    [Gender.Female]: [],
-  };
-  data.forEach((item) => {
-    const { ownerGender } = item;
-    if (!groupedData[ownerGender]) {
-      groupedData[ownerGender] = [];
-    }
-    groupedData[ownerGender].push(item);
-  });
-  return groupedData;
-}
 
 const Pets = () => {
   const { data: owners, isLoading, isError } = useQueryOwners();
@@ -54,6 +40,21 @@ const Pets = () => {
       })),
     );
   }, [owners]);
+
+  const groupByOwnerGender = useCallback(() => {
+    const groupedData: Record<Gender, FlatPetProps[]> = {
+      [Gender.Male]: [],
+      [Gender.Female]: [],
+    };
+    flatPets?.forEach((item) => {
+      const { ownerGender } = item;
+      if (!groupedData[ownerGender]) {
+        groupedData[ownerGender] = [];
+      }
+      groupedData[ownerGender].push(item);
+    });
+    return groupedData;
+  }, [flatPets]);
 
   if (isLoading) return <Loader className="animate-spin" />;
   if (isError) return <div>Error</div>;
@@ -77,7 +78,7 @@ const Pets = () => {
     );
   }
 
-  const groupedData = groupByOwnerGender(flatPets);
+  const groupedData = groupByOwnerGender();
   return selectedGenders.map((gender) => (
     <div key={gender} className="flex gap-2 flex-col px-6">
       <TypographyPBold>{gender}</TypographyPBold>
