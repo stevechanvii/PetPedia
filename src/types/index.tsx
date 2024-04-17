@@ -1,10 +1,21 @@
-import { type LucideIcon } from "lucide-react";
+export enum Gender {
+  Male = "Male",
+  Female = "Female",
+}
 
-export interface NavItem {
-  title: string;
-  href: string;
-  icon: LucideIcon;
-  color?: string;
-  isChidren?: boolean;
-  children?: NavItem[];
+export enum PetType {
+  Cat = "Cat",
+  Dog = "Dog",
+  Fish = "Fish",
+}
+
+export interface Owner {
+  name: string;
+  gender: Gender;
+  age: number;
+  pets: Pet[];
+}
+export interface Pet {
+  name: string;
+  type: PetType;
 }
