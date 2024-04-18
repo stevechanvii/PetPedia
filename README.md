@@ -12,7 +12,7 @@ npm run dev
 
 ## User Story
 
-Initial [Challenge](https://github.com/Medibank/coding-challenge-web)
+[Challenge](https://github.com/Medibank/coding-challenge-web)
 
 1. As a user, I want to filter the list of pets by type (cats, dogs, or fish).
 2. As a user, I want to sort the pets within either owner's name, age, pet's name, or type by ascending or descending order.
