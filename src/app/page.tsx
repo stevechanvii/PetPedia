@@ -8,15 +8,6 @@ export default function Home() {
       <Hero />
       <SearchBar />
       <Pets />
-
-      {/* {data?.map((owner) => (
-                <div
-                    key={owner.name}
-                    className='flex flex-col items-center justify-center w-1/3 p-4'
-                >
-                    <h1 className='text-2xl font-semibold'>{owner.name}</h1>
-                </div>
-            ))} */}
     </main>
   );
 }
