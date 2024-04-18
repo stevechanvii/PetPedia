@@ -16,13 +16,25 @@ const SearchBar = () => {
     selectedGenders,
     setSelectedGender,
   } = useOwnerSearch();
-  const { searchedName: petName, setSearchedName: setPetName } = usePetSearch();
+  const {
+    selectedTypes,
+    setSelectedType,
+    searchedName: petName,
+    setSearchedName: setPetName,
+  } = usePetSearch();
 
   const genderToggle = useCallback(
     (gender: Gender) => {
       setSelectedGender(gender);
     },
     [setSelectedGender],
+  );
+
+  const typeToggle = useCallback(
+    (type: PetType) => {
+      setSelectedType(type);
+    },
+    [setSelectedType],
   );
 
   return (
@@ -41,7 +53,7 @@ const SearchBar = () => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="owner">Group by Gender</Label>
+            <Label htmlFor="owner">Group by Genders</Label>
             <div className="flex gap-2">
               {Object.values(Gender).map((gen) => (
                 <Badge
@@ -76,12 +88,13 @@ const SearchBar = () => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="type">Group by Type</Label>
+            <Label htmlFor="type">Filter by Types</Label>
             <div className="flex gap-2">
               {Object.values(PetType).map((type) => (
                 <Badge
                   key={type}
-                  variant="outline"
+                  onClick={() => typeToggle(type)}
+                  variant={selectedTypes.includes(type) ? "default" : "outline"}
                   className="px-4 py-2 cursor-pointer"
                 >
                   {type}

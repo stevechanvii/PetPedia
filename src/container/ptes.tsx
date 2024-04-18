@@ -44,11 +44,11 @@ const Pets = () => {
   } = useQueryOwners();
 
   const { searchedName: ownerName, selectedGenders } = useOwnerSearch();
-  const { searchedName: petName } = usePetSearch();
+  const { searchedName: petName, selectedTypes } = usePetSearch();
 
-  // Make a flat array of pets with owner details for easier category
-  const flatPets = useMemo(() => {
-    return owners?.flatMap((owner) =>
+  // Make a flat array of filtered (pet types) pets with owner details for easier category
+  const filteredFlatPets = useMemo(() => {
+    const flatPets = owners?.flatMap((owner) =>
       (owner.pets || NoPet).map((pet) => ({
         petName: pet.name,
         petType: pet.type,
@@ -57,12 +57,18 @@ const Pets = () => {
         ownerGender: owner.gender,
       })),
     );
-  }, [owners]);
+    // filter by pet type
+    if (selectedTypes.length) {
+      return flatPets?.filter((pet) => selectedTypes.includes(pet.petType));
+    }
+
+    return flatPets;
+  }, [owners, selectedTypes]);
 
   // Search by owner name and/or pet name
   const searchedResultsByName = useMemo(() => {
-    const fuseOwner = new Fuse(flatPets || [], ownerFuseSettings);
-    const fusePet = new Fuse(flatPets || [], petFuseSettings);
+    const fuseOwner = new Fuse(filteredFlatPets || [], ownerFuseSettings);
+    const fusePet = new Fuse(filteredFlatPets || [], petFuseSettings);
 
     if (ownerName && petName) {
       const ownerResults = fuseOwner
@@ -78,9 +84,9 @@ const Pets = () => {
     } else if (petName) {
       return fusePet.search(petName).map((result) => result.item);
     } else {
-      return flatPets;
+      return filteredFlatPets;
     }
-  }, [ownerName, petName, flatPets]);
+  }, [ownerName, petName, filteredFlatPets]);
 
   const groupByOwnerGender = useCallback(() => {
     const groupedData: Record<Gender, FlatPetProps[]> = {
@@ -99,7 +105,7 @@ const Pets = () => {
 
   if (isQueryOwnersLoading) return <Loader className="animate-spin" />;
   if (isQueryOwnersError) return <div>Error</div>;
-  if (!flatPets) return <div>No Data</div>;
+  if (!filteredFlatPets) return <div>No Data</div>;
 
   // No need to group
   if (_.isEmpty(selectedGenders)) {
