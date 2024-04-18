@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TypographyH2 } from "@/components/ui/typography";
 import { PetType } from "@/types";
-import { usePetSearch } from "@/hooks/usePetSearch";
+import { useStorePetSearch } from "@/hooks/store/useStorePetSearch";
 
 const PetSearch = () => {
   const {
@@ -14,7 +14,7 @@ const PetSearch = () => {
     setSelectedType,
     searchedName: petName,
     setSearchedName: setPetName,
-  } = usePetSearch();
+  } = useStorePetSearch();
 
   const typeToggle = useCallback(
     (type: PetType) => {

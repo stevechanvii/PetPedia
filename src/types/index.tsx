@@ -9,6 +9,20 @@ export enum PetType {
   Fish = "Fish",
 }
 
+export enum SortByOwner {
+  Name = "Name",
+  Age = "Age",
+}
+
+export enum SortByPet {
+  Name = "Name",
+  Type = "Type",
+}
+export enum Order {
+  Asc = "Asc",
+  Desc = "Desc",
+}
+
 export interface Owner {
   name: string;
   gender: Gender;

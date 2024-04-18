@@ -9,7 +9,7 @@ interface OwnerSearchStore {
   setSelectedGender: (gender: Gender) => void;
 }
 
-export const useOwnerSearch = create<OwnerSearchStore>((set) => ({
+export const useStoreOwnerSearch = create<OwnerSearchStore>((set) => ({
   searchedName: "",
   setSearchedName: (name) => set({ searchedName: name }),
   selectedGenders: [],

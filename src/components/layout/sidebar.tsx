@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import { cn } from "@/lib/utils";
-import { useSidebar } from "@/hooks/useSidebar";
+import { useSidebar } from "@/hooks/store/useSidebar";
 import { ArrowLeft } from "lucide-react";
 
 interface SidebarProps {

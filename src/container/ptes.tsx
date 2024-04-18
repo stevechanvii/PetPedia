@@ -8,8 +8,8 @@ import _ from "lodash";
 import { Gender, type PetType } from "@/types";
 import Fuse from "fuse.js";
 import { TypographyPBold } from "@/components/ui/typography";
-import { useOwnerSearch } from "@/hooks/useOwnerSearch";
-import { usePetSearch } from "@/hooks/usePetSearch";
+import { useStoreOwnerSearch } from "@/hooks/store/useStoreOwnerSearch";
+import { useStorePetSearch } from "@/hooks/store/useStorePetSearch";
 
 const NoPet = [
   {
@@ -43,8 +43,8 @@ const Pets = () => {
     isError: isQueryOwnersError,
   } = useQueryOwners();
 
-  const { searchedName: ownerName, selectedGenders } = useOwnerSearch();
-  const { searchedName: petName, selectedTypes } = usePetSearch();
+  const { searchedName: ownerName, selectedGenders } = useStoreOwnerSearch();
+  const { searchedName: petName, selectedTypes } = useStorePetSearch();
 
   // Make a flat array of filtered (pet types) pets with owner details for easier category
   const filteredFlatPets = useMemo(() => {

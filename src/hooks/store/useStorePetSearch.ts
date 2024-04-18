@@ -9,7 +9,7 @@ interface PetSearchStore {
   setSelectedType: (type: PetType) => void;
 }
 
-export const usePetSearch = create<PetSearchStore>((set) => ({
+export const useStorePetSearch = create<PetSearchStore>((set) => ({
   searchedName: "",
   setSearchedName: (name) => set({ searchedName: name }),
   selectedTypes: [],
