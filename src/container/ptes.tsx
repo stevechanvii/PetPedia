@@ -64,7 +64,6 @@ const Pets = () => {
       flatPets = flatPets?.filter((pet) => selectedTypes.includes(pet.petType));
     }
     // Sort by
-    console.log(sortBy, order);
     if (sortBy === SortByOwner.OwnerName) {
       flatPets = _.orderBy(flatPets, ["ownerName"], [order]);
     }
@@ -75,7 +74,7 @@ const Pets = () => {
       flatPets = _.orderBy(flatPets, ["petName"], [order]);
     }
     if (sortBy === SortByPet.Type) {
-      return _.orderBy(flatPets, ["petType"], [order]);
+      flatPets = _.orderBy(flatPets, ["petType"], [order]);
     }
 
     return flatPets;

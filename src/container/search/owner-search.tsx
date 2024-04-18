@@ -11,7 +11,7 @@ import { useStoreSortBy } from "@/hooks/store/useStoreSortBy";
 import { ArrowDown, ArrowUp } from "lucide-react";
 
 type OrderIconProps = { isSelected: boolean; order: Order };
-const OrderIcon = ({ isSelected, order }: OrderIconProps) => {
+export const OrderIcon = ({ isSelected, order }: OrderIconProps) => {
   if (!isSelected) return null;
   return order === Order.Asc ? <ArrowUp size={18} /> : <ArrowDown size={18} />;
 };
