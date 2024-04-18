@@ -14,6 +14,8 @@ import { useStoreOwnerSearch } from "@/hooks/store/useStoreOwnerSearch";
 import { useStoreSortBy } from "@/hooks/store/useStoreSortBy";
 import { ArrowDown, ArrowUp, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import _ from "lodash";
 
 type OrderIconProps = { isSelected: boolean; order: Order };
 export const OrderIcon = ({ isSelected, order }: OrderIconProps) => {
@@ -58,16 +60,22 @@ const OwnerSearch = () => {
 
   return (
     <div className="flex flex-col flex-1 border rounded p-4">
-      <div className="flex justify-between sm:justify-start gap-3 group">
+      <div className="flex justify-between sm:justify-start gap-3">
         <TypographyH2>Owner</TypographyH2>
         <Button
           variant="outline"
           size="sm"
           onClick={reset}
-          className="flex gap-1"
+          className="flex gap-1 group"
         >
           <TypographyP2>Reset</TypographyP2>
-          <RefreshCw size={14} className="group-hover:animate-spin" />
+          <RefreshCw
+            size={14}
+            className={cn(
+              (!_.isEmpty(selectedGenders) || ownerName) &&
+                "group-hover:animate-spin",
+            )}
+          />
         </Button>
       </div>
       <div className="flex flex-col sm:flex-row gap-4">
