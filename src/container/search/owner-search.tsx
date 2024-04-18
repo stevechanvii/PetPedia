@@ -58,7 +58,7 @@ const OwnerSearch = () => {
 
   return (
     <div className="flex flex-col flex-1 border rounded p-4">
-      <div className="flex gap-3 group">
+      <div className="flex justify-between sm:justify-start gap-3 group">
         <TypographyH2>Owner</TypographyH2>
         <Button
           variant="outline"
@@ -70,7 +70,7 @@ const OwnerSearch = () => {
           <RefreshCw size={14} className="group-hover:animate-spin" />
         </Button>
       </div>
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <div className="flex flex-col gap-2">
             <Label htmlFor="owner">Search by Name</Label>

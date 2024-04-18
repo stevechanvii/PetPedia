@@ -5,7 +5,7 @@ import PetSearch from "./pet-search";
 
 const SearchBar = () => {
   return (
-    <div className="flex gap-8 p-6">
+    <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 p-3 sm:p-6">
       <OwnerSearch />
       <PetSearch />
     </div>

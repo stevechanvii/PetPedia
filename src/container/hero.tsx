@@ -7,19 +7,19 @@ import { TypographyH1, TypographyH2 } from "@/components/ui/typography";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col w-full h-[500px] bg-gradient-to-b from-[#626AAB] to-[#303056]">
-      <div className="flex flex-col justify-end items-center gap-3 flex-1 lg:gap-8">
+    <div className="flex flex-col w-full h-[300px] sm:h-[500px] bg-gradient-to-b from-[#626AAB] to-[#303056]">
+      <div className="flex flex-col justify-center sm:justify-end items-center gap-3 flex-1 lg:gap-8">
         <TypographyH1 className="lg:text-[90px] text-white">
           PetPedia
         </TypographyH1>
-        <TypographyH2 className="text-white font-normal">
+        <TypographyH2 className="text-white hidden sm:inline font-normal">
           A place where you can find all the pets you need
         </TypographyH2>
       </div>
       <div className="justify-between items-end flex">
         <Image src={cat1} alt="cat-1" />
         <Image src={dog1} alt="dog-1" />
-        <Image src={cat2} alt="cat-2" />
+        <Image src={cat2} alt="cat-2" className="hidden lg:inline " />
       </div>
     </div>
   );

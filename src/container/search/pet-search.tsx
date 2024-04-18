@@ -65,8 +65,8 @@ const PetSearch = () => {
   );
 
   return (
-    <div className="flex flex-col flex-1 border rounded p-6">
-      <div className="flex gap-3 group">
+    <div className="flex flex-col flex-1 border rounded p-4">
+      <div className="flex justify-between sm:justify-start gap-3 group">
         <TypographyH2>Pet</TypographyH2>
         <Button
           variant="outline"
@@ -78,7 +78,7 @@ const PetSearch = () => {
           <RefreshCw size={14} className="group-hover:animate-spin" />
         </Button>
       </div>
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <div className="flex flex-col gap-2">
             <Label htmlFor="pet">Search by Name</Label>

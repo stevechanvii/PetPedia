@@ -1,6 +1,6 @@
 # Pet-Pedia
 
-First, run the development server (node version: 18.19.0):
+Run the development server (node version: 18.19.0):
 
 ```bash
 npm run dev
