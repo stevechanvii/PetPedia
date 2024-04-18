@@ -125,7 +125,7 @@ const Pets = () => {
   // No need to group
   if (_.isEmpty(selectedGenders)) {
     return (
-      <div className="flex gap-2 flex-wrap px-6">
+      <div className="flex gap-6 flex-wrap px-6">
         {_.isEmpty(searchedResultsByName) ? (
           <TypographyPBold>No pet meets your requirements</TypographyPBold>
         ) : (
@@ -148,7 +148,7 @@ const Pets = () => {
   return selectedGenders.map((gender) => (
     <div key={gender} className="flex gap-2 flex-col px-6">
       <TypographyPBold>{gender}</TypographyPBold>
-      <div className="flex gap-2 flex-wrap">
+      <div className="flex gap-6 flex-wrap">
         {_.isEmpty(groupedData[gender]) ? (
           <TypographyPBold>No pet meets your requirements</TypographyPBold>
         ) : (
