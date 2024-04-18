@@ -4,6 +4,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/providers/react-query-provider";
 import NextThemeProvider from "@/providers/next-theme-provider";
 import { Layout } from "@/components/layout";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
             <Layout>{children}</Layout>
           </NextThemeProvider>
         </ReactQueryProvider>
+        <Toaster richColors />
       </body>
     </html>
   );
