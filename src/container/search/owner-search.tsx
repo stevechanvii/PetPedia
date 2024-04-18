@@ -92,7 +92,7 @@ const OwnerSearch = () => {
                   variant={
                     selectedGenders.includes(gen) ? "default" : "outline"
                   }
-                  className="px-3.5 py-1.5 cursor-pointer text-sm"
+                  className="px-3.5 py-1.5 cursor-pointer sm:text-sm"
                 >
                   {gen}
                 </Badge>
@@ -111,7 +111,9 @@ const OwnerSearch = () => {
                   variant={sortByOwner === sort ? "default" : "outline"}
                   className="px-3.5 py-1.5 cursor-pointer gap-1"
                 >
-                  <TypographyP className="text-sm">{sortByOwner}</TypographyP>
+                  <TypographyP className="sm:text-sm">
+                    {sortByOwner}
+                  </TypographyP>
                   <OrderIcon isSelected={sortByOwner === sort} order={order} />
                 </Badge>
               ))}

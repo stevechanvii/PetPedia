@@ -151,7 +151,7 @@ const Pets = () => {
 
   const groupedData = groupByOwnerGender();
   return (
-    <div className="flex gap-2 flex-col px-6 mb-4">
+    <div className="flex gap-2 flex-col px-0 sm:px-6 mb-4">
       {selectedGenders.map((gender) => (
         <div key={gender} className="flex gap-2 flex-col px-6 mb-4">
           <TypographyPBold>{`Owner gender: ${gender}`}</TypographyPBold>

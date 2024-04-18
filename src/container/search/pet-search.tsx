@@ -98,7 +98,7 @@ const PetSearch = () => {
                   key={type}
                   onClick={() => typeToggle(type)}
                   variant={selectedTypes.includes(type) ? "default" : "outline"}
-                  className="px-3.5 text-sm py-1.5 cursor-pointer gap-1"
+                  className="px-3.5 sm:text-sm py-1.5 cursor-pointer gap-1"
                 >
                   <TypographyP>{type}</TypographyP>
                   <PetIcon type={type} />
@@ -116,7 +116,7 @@ const PetSearch = () => {
                   key={sortByPet}
                   onClick={() => sortToggle(sortByPet)}
                   variant={sortByPet === sort ? "default" : "outline"}
-                  className="px-3.5 text-sm py-1.5 cursor-pointer gap-1"
+                  className="px-3.5 sm:text-sm py-1.5 cursor-pointer gap-1"
                 >
                   <TypographyP>{sortByPet}</TypographyP>
                   <OrderIcon isSelected={sortByPet === sort} order={order} />

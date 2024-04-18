@@ -1,4 +1,4 @@
-import { PetType, type Gender } from "@/types";
+import { Gender, PetType } from "@/types";
 import React from "react";
 import { TypographyP } from "./ui/typography";
 
@@ -34,7 +34,7 @@ const PetIcon = ({ type, name }: { type: PetType; name: string }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Image src={github} alt={name} className="w-30 h-30" />
+        <Image src={github} alt={name} className="w-16 h-16 sm:w-28 sm:h-28" />
       </Link>
     );
   }
@@ -47,21 +47,21 @@ const PetIcon = ({ type, name }: { type: PetType; name: string }) => {
   const icons = petIcons[type];
   const icon = icons[name.length % icons.length];
 
-  return <Image src={icon} alt={name} className="w-30 h-30" />;
+  return <Image src={icon} alt={name} className="w-16 h-16 sm:w-28 sm:h-28" />;
 };
 
 const PetCard = ({ name, ownerAge, ownerGender, ownerName, type }: Props) => {
   return (
     <div className="flex flex-col gap-1 items-center">
       <Badge>
-        <TypographyP className="text-base">
+        <TypographyP className="sm:text-sm">
           {type ? `${name} (${type.toLowerCase()})` : "No Pet"}
         </TypographyP>
       </Badge>
       <PetIcon type={type} name={name} />
 
       <Badge>
-        <TypographyP className="text-sm">{`${ownerName}, ${ownerAge}, ${ownerGender}`}</TypographyP>
+        <TypographyP className="sm:text-sm">{`${ownerName}, ${ownerAge}, ${ownerGender == Gender.Female ? "F" : "M"}`}</TypographyP>
       </Badge>
     </div>
   );
