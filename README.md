@@ -18,6 +18,7 @@ npm run dev
 4. As a user, I want the ability to reset my filtered/searched results.
 5. As a user, I want the website to be fully functional on mobile devices.
 6. As a user, I want to experience a user-friendly design with options for light and dark themes.
+7. As a user, I want the website to be kid-friendly with nice animations.
 
 ## Project Details
 
