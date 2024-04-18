@@ -4,11 +4,12 @@ import React, { useCallback, useMemo } from "react";
 import { useQueryOwners } from "@/hooks/query/useQueryPets";
 import { Loader } from "lucide-react";
 import PetCard from "@/components/pet-card";
-import { useSearch } from "@/hooks/useSearch";
 import _ from "lodash";
 import { Gender, type PetType } from "@/types";
 import Fuse from "fuse.js";
 import { TypographyPBold } from "@/components/ui/typography";
+import { useOwnerSearch } from "@/hooks/useOwnerSearch";
+import { usePetSearch } from "@/hooks/usePetSearch";
 
 const NoPet = [
   {
@@ -41,7 +42,9 @@ const Pets = () => {
     isLoading: isQueryOwnersLoading,
     isError: isQueryOwnersError,
   } = useQueryOwners();
-  const { ownerName, selectedGenders, petName } = useSearch();
+
+  const { searchedName: ownerName, selectedGenders } = useOwnerSearch();
+  const { searchedName: petName } = usePetSearch();
 
   // Make a flat array of pets with owner details for easier category
   const flatPets = useMemo(() => {

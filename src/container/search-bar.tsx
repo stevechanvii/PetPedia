@@ -6,17 +6,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TypographyH2 } from "@/components/ui/typography";
 import { Gender, PetType } from "@/types";
-import { useSearch } from "@/hooks/useSearch";
+import { useOwnerSearch } from "@/hooks/useOwnerSearch";
+import { usePetSearch } from "@/hooks/usePetSearch";
 
 const SearchBar = () => {
   const {
-    ownerName,
-    setOwnerName,
-    setSelectedGender,
+    searchedName: ownerName,
+    setSearchedName: setOwnerName,
     selectedGenders,
-    petName,
-    setPetName,
-  } = useSearch();
+    setSelectedGender,
+  } = useOwnerSearch();
+  const { searchedName: petName, setSearchedName: setPetName } = usePetSearch();
 
   const genderToggle = useCallback(
     (gender: Gender) => {
