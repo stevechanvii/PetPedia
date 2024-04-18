@@ -77,16 +77,20 @@ const Pets = () => {
   if (_.isEmpty(selectedGenders)) {
     return (
       <div className="flex gap-2 flex-wrap px-6">
-        {searchedByOwnerName?.map((pet) => (
-          <PetCard
-            key={pet.ownerName + pet.petName}
-            name={pet.petName}
-            type={pet.petType}
-            ownerName={pet.ownerName}
-            ownerAge={pet.ownerAge}
-            ownerGender={pet.ownerGender}
-          />
-        ))}
+        {_.isEmpty(searchedByOwnerName) ? (
+          <TypographyPBold>No pet meets your requirements</TypographyPBold>
+        ) : (
+          searchedByOwnerName?.map((pet) => (
+            <PetCard
+              key={pet.ownerName + pet.petName}
+              name={pet.petName}
+              type={pet.petType}
+              ownerName={pet.ownerName}
+              ownerAge={pet.ownerAge}
+              ownerGender={pet.ownerGender}
+            />
+          ))
+        )}
       </div>
     );
   }
@@ -96,16 +100,20 @@ const Pets = () => {
     <div key={gender} className="flex gap-2 flex-col px-6">
       <TypographyPBold>{gender}</TypographyPBold>
       <div className="flex gap-2 flex-wrap">
-        {groupedData[gender].map((pet) => (
-          <PetCard
-            key={pet.ownerName + pet.petName}
-            name={pet.petName}
-            type={pet.petType}
-            ownerName={pet.ownerName}
-            ownerAge={pet.ownerAge}
-            ownerGender={pet.ownerGender}
-          />
-        ))}
+        {_.isEmpty(groupedData[gender]) ? (
+          <TypographyPBold>No pet meets your requirements</TypographyPBold>
+        ) : (
+          groupedData[gender].map((pet) => (
+            <PetCard
+              key={pet.ownerName + pet.petName}
+              name={pet.petName}
+              type={pet.petType}
+              ownerName={pet.ownerName}
+              ownerAge={pet.ownerAge}
+              ownerGender={pet.ownerGender}
+            />
+          ))
+        )}
       </div>
     </div>
   ));
