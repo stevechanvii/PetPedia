@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pet-Pedia
 
-## Getting Started
-
-First, run the development server:
+First, run the development server (node version: 18.19.0):
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Live Demo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[View Live Demo](https://pet-pedia.vercel.app/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## User Story
 
-## Learn More
+1. As a user, I want to filter the list of pets by type (cats, dogs, or fish).
+2. As a user, I want to sort the pets within either owner's name, age, pet's name, or type by ascending or descending order.
+3. As a user, I want to perform fuzzy searches for the owner's name or/and pet's name to quickly locate the specific pet.
+4. As a user, I want the ability to reset my filtered/searched results.
+5. As a user, I want the website to be fully functional on mobile devices.
+6. As a user, I want to experience a user-friendly design with options for light and dark themes.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Details
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project has been developed using best practices in the industry 2024. For more details on the industry trends, check out [Rising Stars 2023](https://risingstars.js.org/2023/en).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Key Details
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Framework: Next.js with App router, TypeScript
+-   UI Framework: Shadcn (ranked 1st in Frontend ecosystem)
+-   Styling: Tailwind CSS (ranked 1st in CSS frameworks)
+-   State Management: Zustand (ranked 1st in state management)
+-   Query: TanStack Query (ranked 1st in GraphQL)
+-   Additional Configurations: Prettier, ESLint, Husky, and Commitizen for standardized coding and git commit styles, ensuring code quality and consistency.
