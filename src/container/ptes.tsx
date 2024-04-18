@@ -36,7 +36,11 @@ type FlatPetProps = {
 };
 
 const Pets = () => {
-  const { data: owners, isLoading, isError } = useQueryOwners();
+  const {
+    data: owners,
+    isLoading: isQueryOwnersLoading,
+    isError: isQueryOwnersError,
+  } = useQueryOwners();
   const { ownerName, selectedGenders, petName } = useSearch();
 
   // Make a flat array of pets with owner details for easier category
@@ -90,8 +94,8 @@ const Pets = () => {
     return groupedData;
   }, [searchedResultsByName]);
 
-  if (isLoading) return <Loader className="animate-spin" />;
-  if (isError) return <div>Error</div>;
+  if (isQueryOwnersLoading) return <Loader className="animate-spin" />;
+  if (isQueryOwnersError) return <div>Error</div>;
   if (!flatPets) return <div>No Data</div>;
 
   // No need to group
