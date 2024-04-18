@@ -10,17 +10,17 @@ export enum PetType {
 }
 
 export enum SortByOwner {
-  Name = "Name",
+  OwnerName = "Owner Name",
   Age = "Age",
 }
 
 export enum SortByPet {
-  Name = "Name",
+  PetName = "Pet Name",
   Type = "Type",
 }
 export enum Order {
-  Asc = "Asc",
-  Desc = "Desc",
+  Asc = "asc",
+  Desc = "desc",
 }
 
 export interface Owner {

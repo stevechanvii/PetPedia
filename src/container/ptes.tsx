@@ -5,11 +5,12 @@ import { useQueryOwners } from "@/hooks/query/useQueryPets";
 import { Loader } from "lucide-react";
 import PetCard from "@/components/pet-card";
 import _ from "lodash";
-import { Gender, type PetType } from "@/types";
+import { Gender, SortByOwner, SortByPet, type PetType } from "@/types";
 import Fuse from "fuse.js";
 import { TypographyPBold } from "@/components/ui/typography";
 import { useStoreOwnerSearch } from "@/hooks/store/useStoreOwnerSearch";
 import { useStorePetSearch } from "@/hooks/store/useStorePetSearch";
+import { useStoreSortBy } from "@/hooks/store/useStoreSortBy";
 
 const NoPet = [
   {
@@ -45,10 +46,11 @@ const Pets = () => {
 
   const { searchedName: ownerName, selectedGenders } = useStoreOwnerSearch();
   const { searchedName: petName, selectedTypes } = useStorePetSearch();
+  const { sortBy, order } = useStoreSortBy();
 
   // Make a flat array of filtered (pet types) pets with owner details for easier category
   const filteredFlatPets = useMemo(() => {
-    const flatPets = owners?.flatMap((owner) =>
+    let flatPets = owners?.flatMap((owner) =>
       (owner.pets || NoPet).map((pet) => ({
         petName: pet.name,
         petType: pet.type,
@@ -59,11 +61,25 @@ const Pets = () => {
     );
     // filter by pet type
     if (selectedTypes.length) {
-      return flatPets?.filter((pet) => selectedTypes.includes(pet.petType));
+      flatPets = flatPets?.filter((pet) => selectedTypes.includes(pet.petType));
+    }
+    // Sort by
+    console.log(sortBy, order);
+    if (sortBy === SortByOwner.OwnerName) {
+      flatPets = _.orderBy(flatPets, ["ownerName"], [order]);
+    }
+    if (sortBy === SortByOwner.Age) {
+      flatPets = _.orderBy(flatPets, ["ownerAge"], [order]);
+    }
+    if (sortBy === SortByPet.PetName) {
+      flatPets = _.orderBy(flatPets, ["petName"], [order]);
+    }
+    if (sortBy === SortByPet.Type) {
+      return _.orderBy(flatPets, ["petType"], [order]);
     }
 
     return flatPets;
-  }, [owners, selectedTypes]);
+  }, [order, owners, selectedTypes, sortBy]);
 
   // Search by owner name and/or pet name
   const searchedResultsByName = useMemo(() => {
