@@ -7,6 +7,7 @@ import PetCard from "@/components/pet-card";
 import { useSearch } from "@/hooks/useSearch";
 import _ from "lodash";
 import { Gender, type PetType } from "@/types";
+import Fuse from "fuse.js";
 import { TypographyPBold } from "@/components/ui/typography";
 
 const NoPet = [
@@ -15,6 +16,11 @@ const NoPet = [
     petType: "No Pets",
   },
 ];
+
+const ownerFuseSettings = {
+  threshold: 0.5,
+  keys: ["ownerName"],
+};
 
 type FlatPetProps = {
   petName: string;
@@ -26,7 +32,7 @@ type FlatPetProps = {
 
 const Pets = () => {
   const { data: owners, isLoading, isError } = useQueryOwners();
-  const { selectedGenders } = useSearch();
+  const { ownerName, selectedGenders } = useSearch();
 
   // Make a flat array of pets with owner details for easier category
   const flatPets = useMemo(() => {
@@ -41,12 +47,19 @@ const Pets = () => {
     );
   }, [owners]);
 
+  const searchedByOwnerName = useMemo(() => {
+    const fuseOwner = new Fuse(flatPets || [], ownerFuseSettings);
+    return ownerName
+      ? fuseOwner.search(ownerName).map((result) => result.item)
+      : flatPets;
+  }, [ownerName, flatPets]);
+
   const groupByOwnerGender = useCallback(() => {
     const groupedData: Record<Gender, FlatPetProps[]> = {
       [Gender.Male]: [],
       [Gender.Female]: [],
     };
-    flatPets?.forEach((item) => {
+    searchedByOwnerName?.forEach((item) => {
       const { ownerGender } = item;
       if (!groupedData[ownerGender]) {
         groupedData[ownerGender] = [];
@@ -54,7 +67,7 @@ const Pets = () => {
       groupedData[ownerGender].push(item);
     });
     return groupedData;
-  }, [flatPets]);
+  }, [searchedByOwnerName]);
 
   if (isLoading) return <Loader className="animate-spin" />;
   if (isError) return <div>Error</div>;
@@ -64,7 +77,7 @@ const Pets = () => {
   if (_.isEmpty(selectedGenders)) {
     return (
       <div className="flex gap-2 flex-wrap px-6">
-        {flatPets?.map((pet) => (
+        {searchedByOwnerName?.map((pet) => (
           <PetCard
             key={pet.ownerName + pet.petName}
             name={pet.petName}
