@@ -11,6 +11,7 @@ import { TypographyPBold } from "@/components/ui/typography";
 import { useStoreOwnerSearch } from "@/hooks/store/useStoreOwnerSearch";
 import { useStorePetSearch } from "@/hooks/store/useStorePetSearch";
 import { useStoreSortBy } from "@/hooks/store/useStoreSortBy";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const NoPet = [
   {
@@ -38,6 +39,7 @@ type FlatPetProps = {
 };
 
 const Pets = () => {
+  const [parent] = useAutoAnimate(/* optional config */);
   const {
     data: owners,
     isLoading: isQueryOwnersLoading,
@@ -130,7 +132,7 @@ const Pets = () => {
   // No need to group
   if (_.isEmpty(selectedGenders)) {
     return (
-      <div className="flex gap-6 flex-wrap items-start px-6">
+      <div className="flex gap-6 flex-wrap items-start px-6" ref={parent}>
         {_.isEmpty(searchedResultsByName) ? (
           <TypographyPBold>No pet meets your requirements</TypographyPBold>
         ) : (
@@ -151,7 +153,7 @@ const Pets = () => {
 
   const groupedData = groupByOwnerGender();
   return (
-    <div className="flex gap-2 flex-col px-0 sm:px-6 mb-4">
+    <div className="flex gap-2 flex-col px-0 sm:px-6 mb-4" ref={parent}>
       {selectedGenders.map((gender) => (
         <div key={gender} className="flex gap-2 flex-col px-6 mb-4">
           <TypographyPBold>{`Owner gender: ${gender}`}</TypographyPBold>
