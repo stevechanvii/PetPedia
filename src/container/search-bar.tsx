@@ -9,8 +9,14 @@ import { Gender, PetType } from "@/types";
 import { useSearch } from "@/hooks/useSearch";
 
 const SearchBar = () => {
-  const { ownerName, setOwnerName, setSelectedGender, selectedGenders } =
-    useSearch();
+  const {
+    ownerName,
+    setOwnerName,
+    setSelectedGender,
+    selectedGenders,
+    petName,
+    setPetName,
+  } = useSearch();
 
   const genderToggle = useCallback(
     (gender: Gender) => {
@@ -61,7 +67,13 @@ const SearchBar = () => {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="pet">Search by Name</Label>
-            <Input id="pet" placeholder="Pet Name" className="max-w-[300px]" />
+            <Input
+              id="pet"
+              placeholder="Pet Name"
+              className="max-w-[300px]"
+              value={petName}
+              onChange={(e) => setPetName(e.target.value)}
+            />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="type">Group by Type</Label>

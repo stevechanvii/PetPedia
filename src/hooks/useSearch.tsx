@@ -7,6 +7,8 @@ interface SearchStore {
   setOwnerName: (name: string) => void;
   selectedGenders: Gender[];
   setSelectedGender: (gender: Gender) => void;
+  petName: string;
+  setPetName: (name: string) => void;
 }
 
 export const useSearch = create<SearchStore>((set) => ({
@@ -17,4 +19,6 @@ export const useSearch = create<SearchStore>((set) => ({
     set((state) => ({
       selectedGenders: _.xor(state.selectedGenders, [gender]),
     })),
+  petName: "",
+  setPetName: (name) => set({ petName: name }),
 }));
