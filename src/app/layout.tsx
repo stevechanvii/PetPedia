@@ -20,6 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta property="og:title" content="PetPedia" />
+        <meta
+          property="og:description"
+          content="A place where you can find all the pets you need"
+        />
+        <meta property="og:url" content="https://pet-pedia.vercel.app/" />
+        <meta property="og:type" content="website" />
+      </head>
       <body className={inter.className}>
         <ReactQueryProvider>
           <NextThemeProvider>

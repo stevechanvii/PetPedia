@@ -32,3 +32,7 @@ The project has been developed using best practices in the industry 2024. For mo
 -   State Management: Zustand (ranked 1st in state management)
 -   Query: TanStack Query (ranked 1st in GraphQL)
 -   Additional Configurations: Prettier, ESLint, Husky, and Commitizen for standardized coding and git commit styles, ensuring code quality and consistency.
+
+## Performance (Chrome Lighthouse)
+
+![plot](./public/assets/performance.png)
