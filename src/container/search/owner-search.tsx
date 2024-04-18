@@ -4,11 +4,16 @@ import React, { useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { TypographyH2, TypographyP } from "@/components/ui/typography";
+import {
+  TypographyH2,
+  TypographyP,
+  TypographyP2,
+} from "@/components/ui/typography";
 import { Gender, Order, SortByOwner } from "@/types";
 import { useStoreOwnerSearch } from "@/hooks/store/useStoreOwnerSearch";
 import { useStoreSortBy } from "@/hooks/store/useStoreSortBy";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown, ArrowUp, RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type OrderIconProps = { isSelected: boolean; order: Order };
 export const OrderIcon = ({ isSelected, order }: OrderIconProps) => {
@@ -22,6 +27,7 @@ const OwnerSearch = () => {
     setSearchedName: setOwnerName,
     selectedGenders,
     setSelectedGender,
+    reset,
   } = useStoreOwnerSearch();
 
   const {
@@ -52,7 +58,18 @@ const OwnerSearch = () => {
 
   return (
     <div className="flex flex-col flex-1 border rounded p-4">
-      <TypographyH2>Owner</TypographyH2>
+      <div className="flex gap-3 group">
+        <TypographyH2>Owner</TypographyH2>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={reset}
+          className="flex gap-1"
+        >
+          <TypographyP2>Reset</TypographyP2>
+          <RefreshCw size={14} className="group-hover:animate-spin" />
+        </Button>
+      </div>
       <div className="flex gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <div className="flex flex-col gap-2">
@@ -75,7 +92,7 @@ const OwnerSearch = () => {
                   variant={
                     selectedGenders.includes(gen) ? "default" : "outline"
                   }
-                  className="px-4 py-2 cursor-pointer"
+                  className="px-3.5 py-1.5 cursor-pointer text-sm"
                 >
                   {gen}
                 </Badge>
@@ -92,9 +109,9 @@ const OwnerSearch = () => {
                   key={sortByOwner}
                   onClick={() => sortToggle(sortByOwner)}
                   variant={sortByOwner === sort ? "default" : "outline"}
-                  className="px-4 py-2 cursor-pointer gap-1"
+                  className="px-3.5 py-1.5 cursor-pointer gap-1"
                 >
-                  <TypographyP>{sortByOwner}</TypographyP>
+                  <TypographyP className="text-sm">{sortByOwner}</TypographyP>
                   <OrderIcon isSelected={sortByOwner === sort} order={order} />
                 </Badge>
               ))}

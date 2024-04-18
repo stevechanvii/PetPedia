@@ -4,12 +4,17 @@ import React, { useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { TypographyH2, TypographyP } from "@/components/ui/typography";
+import {
+  TypographyH2,
+  TypographyP,
+  TypographyP2,
+} from "@/components/ui/typography";
 import { Order, PetType, SortByPet } from "@/types";
 import { useStorePetSearch } from "@/hooks/store/useStorePetSearch";
 import { useStoreSortBy } from "@/hooks/store/useStoreSortBy";
 import { OrderIcon } from "./owner-search";
-import { Bone, Dog, Fish, PawPrint } from "lucide-react";
+import { Bone, Dog, Fish, PawPrint, RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const PetIcon = ({ type }: { type: PetType }) => {
   switch (type) {
@@ -30,6 +35,7 @@ const PetSearch = () => {
     setSelectedType,
     searchedName: petName,
     setSearchedName: setPetName,
+    reset,
   } = useStorePetSearch();
 
   const {
@@ -60,7 +66,18 @@ const PetSearch = () => {
 
   return (
     <div className="flex flex-col flex-1 border rounded p-6">
-      <TypographyH2>Pet</TypographyH2>
+      <div className="flex gap-3 group">
+        <TypographyH2>Pet</TypographyH2>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={reset}
+          className="flex gap-1"
+        >
+          <TypographyP2>Reset</TypographyP2>
+          <RefreshCw size={14} className="group-hover:animate-spin" />
+        </Button>
+      </div>
       <div className="flex gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <div className="flex flex-col gap-2">
@@ -81,7 +98,7 @@ const PetSearch = () => {
                   key={type}
                   onClick={() => typeToggle(type)}
                   variant={selectedTypes.includes(type) ? "default" : "outline"}
-                  className="px-4 py-2 cursor-pointer gap-1"
+                  className="px-3.5 text-sm py-1.5 cursor-pointer gap-1"
                 >
                   <TypographyP>{type}</TypographyP>
                   <PetIcon type={type} />
@@ -99,7 +116,7 @@ const PetSearch = () => {
                   key={sortByPet}
                   onClick={() => sortToggle(sortByPet)}
                   variant={sortByPet === sort ? "default" : "outline"}
-                  className="px-4 py-2 cursor-pointer gap-1"
+                  className="px-3.5 text-sm py-1.5 cursor-pointer gap-1"
                 >
                   <TypographyP>{sortByPet}</TypographyP>
                   <OrderIcon isSelected={sortByPet === sort} order={order} />

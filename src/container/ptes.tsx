@@ -2,7 +2,7 @@
 
 import React, { useCallback, useMemo } from "react";
 import { useQueryOwners } from "@/hooks/query/useQueryPets";
-import { Loader } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import PetCard from "@/components/pet-card";
 import _ from "lodash";
 import { Gender, SortByOwner, SortByPet, type PetType } from "@/types";
@@ -118,14 +118,19 @@ const Pets = () => {
     return groupedData;
   }, [searchedResultsByName]);
 
-  if (isQueryOwnersLoading) return <Loader className="animate-spin" />;
+  if (isQueryOwnersLoading)
+    return (
+      <div className="flex justify-center items-center h-[200px]">
+        <LoaderCircle size="50px" className="animate-spin text-blue-500" />
+      </div>
+    );
   if (isQueryOwnersError) return <div>Error</div>;
   if (!filteredFlatPets) return <div>No Data</div>;
 
   // No need to group
   if (_.isEmpty(selectedGenders)) {
     return (
-      <div className="flex gap-6 flex-wrap px-6">
+      <div className="flex gap-6 flex-wrap items-start px-6">
         {_.isEmpty(searchedResultsByName) ? (
           <TypographyPBold>No pet meets your requirements</TypographyPBold>
         ) : (
@@ -145,27 +150,31 @@ const Pets = () => {
   }
 
   const groupedData = groupByOwnerGender();
-  return selectedGenders.map((gender) => (
-    <div key={gender} className="flex gap-2 flex-col px-6">
-      <TypographyPBold>{gender}</TypographyPBold>
-      <div className="flex gap-6 flex-wrap">
-        {_.isEmpty(groupedData[gender]) ? (
-          <TypographyPBold>No pet meets your requirements</TypographyPBold>
-        ) : (
-          groupedData[gender].map((pet) => (
-            <PetCard
-              key={pet.ownerName + pet.petName}
-              name={pet.petName}
-              type={pet.petType}
-              ownerName={pet.ownerName}
-              ownerAge={pet.ownerAge}
-              ownerGender={pet.ownerGender}
-            />
-          ))
-        )}
-      </div>
+  return (
+    <div className="flex gap-2 flex-col px-6 mb-4">
+      {selectedGenders.map((gender) => (
+        <div key={gender} className="flex gap-2 flex-col px-6 mb-4">
+          <TypographyPBold>{`Owner gender: ${gender}`}</TypographyPBold>
+          <div className="flex gap-6 flex-wrap">
+            {_.isEmpty(groupedData[gender]) ? (
+              <TypographyPBold>No pet meets your requirements</TypographyPBold>
+            ) : (
+              groupedData[gender].map((pet) => (
+                <PetCard
+                  key={pet.ownerName + pet.petName}
+                  name={pet.petName}
+                  type={pet.petType}
+                  ownerName={pet.ownerName}
+                  ownerAge={pet.ownerAge}
+                  ownerGender={pet.ownerGender}
+                />
+              ))
+            )}
+          </div>
+        </div>
+      ))}
     </div>
-  ));
+  );
 };
 
 export default Pets;

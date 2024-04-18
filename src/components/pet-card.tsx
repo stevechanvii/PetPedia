@@ -15,6 +15,7 @@ import fish1 from "../../public/icons/fish-1.png";
 import github from "../../public/icons/github.png";
 import Image from "next/image";
 import { Badge } from "./ui/badge";
+import Link from "next/link";
 
 type Props = {
   name: string;
@@ -27,7 +28,15 @@ type Props = {
 // Get the image based on the pet type and name
 const PetIcon = ({ type, name }: { type: PetType; name: string }) => {
   if (!type) {
-    return <Image src={github} alt={name} className="w-30 h-30" />;
+    return (
+      <Link
+        href="https://github.com/stevechanvii/PetPedia"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Image src={github} alt={name} className="w-30 h-30" />
+      </Link>
+    );
   }
   const petIcons = {
     [PetType.Dog]: [dog1, dog2, dog3],
