@@ -39,7 +39,8 @@ type FlatPetProps = {
 };
 
 const Pets = () => {
-  const [parent] = useAutoAnimate(/* optional config */);
+  const [parent] = useAutoAnimate();
+
   const {
     data: owners,
     isLoading: isQueryOwnersLoading,
@@ -153,11 +154,11 @@ const Pets = () => {
 
   const groupedData = groupByOwnerGender();
   return (
-    <div className="flex gap-2 flex-col px-0 sm:px-6 mb-4" ref={parent}>
+    <div className="flex gap-2 flex-col px-0 sm:px-6 mb-4">
       {selectedGenders.map((gender) => (
         <div key={gender} className="flex gap-2 flex-col px-6 mb-4">
           <TypographyPBold>{`Owner gender: ${gender}`}</TypographyPBold>
-          <div className="flex gap-6 flex-wrap">
+          <div className="flex gap-6 flex-wrap" ref={parent}>
             {_.isEmpty(groupedData[gender]) ? (
               <TypographyPBold>No pet meets your requirements</TypographyPBold>
             ) : (
