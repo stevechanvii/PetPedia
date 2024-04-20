@@ -37,7 +37,7 @@ const config = {
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
   },
-  ignorePatterns: ["jest.config.js", ".eslintrc.js"],
+  ignorePatterns: ["jest.config.js", ".eslintrc.js", "*.test.tsx"],
 };
 
 module.exports = config;

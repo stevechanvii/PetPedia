@@ -18,23 +18,27 @@ import { Badge } from "./ui/badge";
 import Link from "next/link";
 
 type Props = {
-  name: string;
+  name?: string;
   ownerName: string;
-  type: PetType;
+  type?: PetType;
   ownerGender: Gender;
   ownerAge: number;
 };
 
 // Get the image based on the pet type and name
-const PetIcon = ({ type, name }: { type: PetType; name: string }) => {
-  if (!type) {
+const PetIcon = ({ type, name }: { type?: PetType; name?: string }) => {
+  if (!name || !type) {
     return (
       <Link
         href="https://github.com/stevechanvii/PetPedia"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Image src={github} alt={name} className="w-16 h-16 sm:w-28 sm:h-28" />
+        <Image
+          src={github}
+          alt="no-pet"
+          className="w-16 h-16 sm:w-28 sm:h-28"
+        />
       </Link>
     );
   }
@@ -54,14 +58,17 @@ const PetCard = ({ name, ownerAge, ownerGender, ownerName, type }: Props) => {
   return (
     <div className="flex flex-col gap-1 items-center">
       <Badge>
-        <TypographyP className="sm:text-sm">
+        <TypographyP className="sm:text-sm" data-testid="pet-details">
           {type ? `${name} (${type.toLowerCase()})` : "No Pet"}
         </TypographyP>
       </Badge>
       <PetIcon type={type} name={name} />
 
       <Badge>
-        <TypographyP className="sm:text-sm">{`${ownerName}, ${ownerAge}, ${ownerGender == Gender.Female ? "F" : "M"}`}</TypographyP>
+        <TypographyP
+          className="sm:text-sm"
+          data-testid="owner-details"
+        >{`${ownerName}, ${ownerAge}, ${ownerGender == Gender.Female ? "F" : "M"}`}</TypographyP>
       </Badge>
     </div>
   );
