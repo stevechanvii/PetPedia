@@ -1,70 +1,75 @@
 {
-    "name": "petpedia",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint",
-        "prepare": "husky"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
-    },
-    "dependencies": {
-        "@formkit/auto-animate": "^0.8.2",
-        "@radix-ui/react-dialog": "^1.0.5",
-        "@radix-ui/react-label": "^2.0.2",
-        "@radix-ui/react-slot": "^1.0.2",
-        "@tanstack/react-query": "^5.29.2",
-        "@tanstack/react-query-devtools": "^5.29.2",
-        "axios": "^1.6.8",
-        "class-variance-authority": "^0.7.0",
-        "clsx": "^2.1.0",
-        "fuse.js": "^7.0.0",
-        "lucide-react": "^0.368.0",
-        "next": "14.2.1",
-        "next-themes": "^0.3.0",
-        "react": "^18",
-        "react-dom": "^18",
-        "sonner": "^1.4.41",
-        "tailwind-merge": "^2.2.2",
-        "tailwindcss-animate": "^1.0.7",
-        "zustand": "^4.5.2"
-    },
-    "devDependencies": {
-        "@tanstack/eslint-plugin-query": "^5.20.1",
-        "@types/eslint": "^8.56.5",
-        "@types/lodash": "^4.17.0",
-        "@types/node": "^20",
-        "@types/react": "^18",
-        "@types/react-dom": "^18",
-        "@typescript-eslint/eslint-plugin": "^6.21.0",
-        "cz-conventional-changelog": "^3.3.0",
-        "eslint": "^8.57.0",
-        "eslint-config-next": "^14.1.1",
-        "eslint-config-standard-with-typescript": "^43.0.1",
-        "eslint-plugin-import": "^2.29.1",
-        "eslint-plugin-n": "^16.6.2",
-        "eslint-plugin-promise": "^6.1.1",
-        "eslint-plugin-react": "^7.33.2",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "husky": "^9.0.11",
-        "lint-staged": "^15.2.2",
-        "postcss": "^8",
-        "prettier": "^3.2.5",
-        "prettier-plugin-tailwindcss": "^0.5.14",
-        "tailwindcss": "^3.4.1",
-        "typescript": "^5.4.5"
-    },
-    "lint-staged": {
-        "./**/*.{js,jsx,ts,tsx,html}": [
-            "prettier --write",
-            "eslint"
-        ],
-        "**/*.{ts,tsx}": "bash -c tsc"
+  "name": "petpedia",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prepare": "husky",
+    "test": "jest"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "@formkit/auto-animate": "^0.8.2",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@tanstack/react-query": "^5.29.2",
+    "@tanstack/react-query-devtools": "^5.29.2",
+    "axios": "^1.6.8",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "fuse.js": "^7.0.0",
+    "lucide-react": "^0.368.0",
+    "next": "14.2.1",
+    "next-themes": "^0.3.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "sonner": "^1.4.41",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.20.1",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.2",
+    "@types/eslint": "^8.56.5",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.1.1",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^9.0.11",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.5"
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx,ts,tsx,html}": [
+      "prettier --write",
+      "eslint"
+    ],
+    "**/*.{ts,tsx}": "bash -c tsc"
+  }
 }
