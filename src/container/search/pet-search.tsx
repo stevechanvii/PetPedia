@@ -103,6 +103,7 @@ const PetSearch = () => {
             <div className="flex gap-2">
               {Object.values(PetType).map((type) => (
                 <Badge
+                  data-testid={`badge-${type}`}
                   key={type}
                   onClick={() => typeToggle(type)}
                   variant={selectedTypes.includes(type) ? "default" : "outline"}
