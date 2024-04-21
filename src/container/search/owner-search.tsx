@@ -95,6 +95,7 @@ const OwnerSearch = () => {
             <div className="flex gap-2">
               {Object.values(Gender).map((gen) => (
                 <Badge
+                  data-testid={`badge-${gen}`}
                   key={gen}
                   onClick={() => genderToggle(gen)}
                   variant={
