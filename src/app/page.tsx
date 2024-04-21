@@ -1,5 +1,5 @@
 import Hero from "@/container/hero";
-import Pets from "@/container/ptes";
+import Pets from "@/container/pets";
 import SearchBar from "@/container/search";
 
 export default function Home() {

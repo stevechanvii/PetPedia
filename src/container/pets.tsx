@@ -5,13 +5,14 @@ import { useQueryOwners } from "@/hooks/query/useQueryPets";
 import { LoaderCircle } from "lucide-react";
 import PetCard from "@/components/pet-card";
 import _ from "lodash";
-import { Gender, SortByOwner, SortByPet, type PetType } from "@/types";
+import { Gender, SortByOwner, type PetType } from "@/types";
 import Fuse from "fuse.js";
 import { TypographyPBold } from "@/components/ui/typography";
 import { useStoreOwnerSearch } from "@/hooks/store/useStoreOwnerSearch";
 import { useStorePetSearch } from "@/hooks/store/useStorePetSearch";
 import { useStoreSortBy } from "@/hooks/store/useStoreSortBy";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useFilteredSortedPets } from "@/hooks/useFilteredSortedPets";
 
 const ownerFuseSettings = {
   threshold: 0.3,
@@ -23,7 +24,7 @@ const petFuseSettings = {
   keys: ["petName"],
 };
 
-type FlatPetProps = {
+export type FlatPetProps = {
   petName: string;
   petType: PetType;
   ownerName: string;
@@ -44,37 +45,12 @@ const Pets = () => {
   const { searchedName: petName, selectedTypes } = useStorePetSearch();
   const { sortBy, order } = useStoreSortBy();
 
-  // Make a flat array of filtered (pet types) pets with owner details for easier category
-  const filteredFlatPets = useMemo(() => {
-    let flatPets = owners?.flatMap((owner) =>
-      (owner.pets || [{}]).map((pet) => ({
-        petName: pet.name,
-        petType: pet.type,
-        ownerName: owner.name,
-        ownerAge: owner.age,
-        ownerGender: owner.gender,
-      })),
-    );
-    // filter by pet type
-    if (selectedTypes.length) {
-      flatPets = flatPets?.filter((pet) => selectedTypes.includes(pet.petType));
-    }
-    // Sort by
-    if (sortBy === SortByOwner.OwnerName) {
-      flatPets = _.orderBy(flatPets, ["ownerName"], [order]);
-    }
-    if (sortBy === SortByOwner.Age) {
-      flatPets = _.orderBy(flatPets, ["ownerAge"], [order]);
-    }
-    if (sortBy === SortByPet.PetName) {
-      flatPets = _.orderBy(flatPets, ["petName"], [order]);
-    }
-    if (sortBy === SortByPet.Type) {
-      flatPets = _.orderBy(flatPets, ["petType"], [order]);
-    }
-
-    return flatPets;
-  }, [order, owners, selectedTypes, sortBy]);
+  const filteredFlatPets = useFilteredSortedPets({
+    owners: owners || [],
+    selectedTypes,
+    sortBy: sortBy || SortByOwner.OwnerName,
+    order,
+  });
 
   // Search by owner name and/or pet name
   const searchedResultsByName = useMemo(() => {
