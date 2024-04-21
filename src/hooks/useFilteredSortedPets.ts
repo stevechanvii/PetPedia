@@ -15,9 +15,9 @@ export enum SortByPet {
 }
 
 // Utility to flatten the pet and owner data
-const flatPets = (owners: Owner[]): FlatPetProps[] =>
+export const flatPets = (owners: Owner[]): FlatPetProps[] =>
   owners?.flatMap((owner) =>
-    (owner.pets || []).map((pet) => ({
+    (owner.pets || [{}]).map((pet) => ({
       petName: pet.name,
       petType: pet.type,
       ownerName: owner.name,
@@ -27,13 +27,16 @@ const flatPets = (owners: Owner[]): FlatPetProps[] =>
   );
 
 // Filter pets by selected pet types
-const filterPetsByType = (pets: FlatPetProps[], selectedTypes: PetType[]) =>
+export const filterPetsByType = (
+  pets: FlatPetProps[],
+  selectedTypes: PetType[],
+) =>
   selectedTypes.length
     ? pets.filter((pet) => selectedTypes.includes(pet.petType))
     : pets;
 
 // Sort pets by selected criteria and order
-const sortPets = (
+export const sortPets = (
   pets: FlatPetProps[],
   sortBy: SortByOwner | SortByPet,
   order: Order,
@@ -46,7 +49,7 @@ type Props = {
   order: Order;
 };
 // Memoized selector to get the filtered and sorted pets
-const useFilteredSortedPets = ({
+export const useFilteredSortedPets = ({
   owners,
   selectedTypes,
   sortBy,
@@ -54,9 +57,8 @@ const useFilteredSortedPets = ({
 }: Props) =>
   useMemo(() => {
     let pets = flatPets(owners);
+    console.log("pets", pets);
     pets = filterPetsByType(pets, selectedTypes);
     pets = sortPets(pets, sortBy, order);
     return pets;
   }, [owners, selectedTypes, sortBy, order]);
-
-export { useFilteredSortedPets };

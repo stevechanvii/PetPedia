@@ -1,5 +1,7 @@
+import { type Owner } from "@/types";
+
 // data.test.js
-const sampleData = [
+export const sampleOwnerData = [
   {
     name: "Bob",
     gender: "Male",
@@ -42,11 +44,11 @@ const sampleData = [
       { name: "Nemo", type: "Fish" },
     ],
   },
-];
+] as Owner[];
 
 describe("Sample Data Tests", () => {
   test("all entries have a name, gender, and age", () => {
-    sampleData.forEach((person) => {
+    sampleOwnerData.forEach((person) => {
       expect(person).toHaveProperty("name");
       expect(person).toHaveProperty("gender");
       expect(person).toHaveProperty("age");
@@ -57,7 +59,7 @@ describe("Sample Data Tests", () => {
   });
 
   test("pets array is correct", () => {
-    sampleData.forEach((person) => {
+    sampleOwnerData.forEach((person) => {
       if (person.pets) {
         person.pets.forEach((pet) => {
           expect(pet).toHaveProperty("name");
