@@ -70,9 +70,8 @@ const Pets = () => {
       return fuseOwner.search(ownerName).map((result) => result.item);
     } else if (petName) {
       return fusePet.search(petName).map((result) => result.item);
-    } else {
-      return filteredFlatPets;
     }
+    return filteredFlatPets;
   }, [ownerName, petName, filteredFlatPets]);
 
   const groupByOwnerGender = useCallback(() => {

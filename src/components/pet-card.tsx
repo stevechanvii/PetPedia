@@ -17,7 +17,7 @@ import Image from "next/image";
 import { Badge } from "./ui/badge";
 import Link from "next/link";
 
-type Props = {
+export type PetCardProps = {
   name?: string;
   ownerName: string;
   type?: PetType;
@@ -54,7 +54,13 @@ const PetIcon = ({ type, name }: { type?: PetType; name?: string }) => {
   return <Image src={icon} alt={name} className="w-16 h-16 sm:w-28 sm:h-28" />;
 };
 
-const PetCard = ({ name, ownerAge, ownerGender, ownerName, type }: Props) => {
+const PetCard = ({
+  name,
+  ownerAge,
+  ownerGender,
+  ownerName,
+  type,
+}: PetCardProps) => {
   return (
     <div className="flex flex-col gap-1 items-center">
       <Badge>

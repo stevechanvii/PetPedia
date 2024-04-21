@@ -57,7 +57,6 @@ export const useFilteredSortedPets = ({
 }: Props) =>
   useMemo(() => {
     let pets = flatPets(owners);
-    console.log("pets", pets);
     pets = filterPetsByType(pets, selectedTypes);
     pets = sortPets(pets, sortBy, order);
     return pets;
