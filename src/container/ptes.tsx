@@ -13,13 +13,6 @@ import { useStorePetSearch } from "@/hooks/store/useStorePetSearch";
 import { useStoreSortBy } from "@/hooks/store/useStoreSortBy";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-const NoPet = [
-  {
-    petName: "No Pets",
-    petType: "No Pets",
-  },
-];
-
 const ownerFuseSettings = {
   threshold: 0.3,
   keys: ["ownerName"],
@@ -54,7 +47,7 @@ const Pets = () => {
   // Make a flat array of filtered (pet types) pets with owner details for easier category
   const filteredFlatPets = useMemo(() => {
     let flatPets = owners?.flatMap((owner) =>
-      (owner.pets || NoPet).map((pet) => ({
+      (owner.pets || [{}]).map((pet) => ({
         petName: pet.name,
         petType: pet.type,
         ownerName: owner.name,

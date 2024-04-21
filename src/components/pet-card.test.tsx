@@ -20,3 +20,14 @@ describe("PetCard Component", () => {
     expect(ownerDetails).toEqual("Bob, 23, M");
   });
 });
+
+describe("PetCard Component", () => {
+  it("renders No Pet in pet details if type and pet name not provided", () => {
+    render(<PetCard ownerName="Bob" ownerGender={Gender.Male} ownerAge={23} />);
+    const petDetails = screen.getByTestId("pet-details").textContent;
+    expect(petDetails).toEqual("No Pet");
+
+    const ownerDetails = screen.getByTestId("owner-details").textContent;
+    expect(ownerDetails).toEqual("Bob, 23, M");
+  });
+});
